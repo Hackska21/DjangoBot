@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  django_service: &django_service
+    build:
+      context: ./
+      args:
+        - ENVIRONMENT=local
+    image: "django_service:dev"
+    container_name: django_service
+    command: >
+      sh -c "python manage.py migrate &&
+      python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ".:/src"
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    networks:
+      - dev-net
+
+  db:
+    image: 'postgres:14.2'
+    restart: "no"
+    container_name: database_service
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: django_service
+      PGDATA: '/var/lib/postgresql/data/pgdata'
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    ports:
+      - "8001:5432"
+    networks:
+      dev-net:
+
+networks:
+  dev-net:
+    name: dev-net
+
