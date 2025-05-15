@@ -17,9 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from apps.seller.views import SimpleChatbotEndpoint
 from apps.seller.webhooks.twilio import TwilioWebhook
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('webhook/twilio/', TwilioWebhook.as_view())
+    path('webhook/twilio/', TwilioWebhook.as_view()),
+    path('seller/bot/', SimpleChatbotEndpoint.as_view())
 ]
