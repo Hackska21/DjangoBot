@@ -108,7 +108,32 @@ POST webhook/twilio/
 }
 ```
 In order to be used is needed to configure the sandbox from twilio
-![img.png](templates/img.png)
+![img.png](src/img2.png)
 Also is important to be accessible via internet, this could be done using [ngrok](https://ngrok.com/use-cases/webhook-testing)
 
 
+## Arquitectura del Bot 
+![img.png](src/img.png)
+
+## Backlog 
+
+Para llevar a producción (Usando AWS)
+Dockerizar Servicio
+Generar Cluster ECS
+Seleccionar 
+Generar CI/CD script (Git hub actions)
+
+
+- Generar pruebas unitarias de los componentes
+- Generar Logs de latencia de respuesta del agente para medir el performance general 
+- Añadir encuesta de NPS a la interacción del bot 
+- Generar Plan de regresión para testear el bot
+	- Casos de uso standard
+	- Reacción del bot a peticiones fuera de su objetivo 
+	- 
+- Modificar el proceso de ingesta de datos de autos con las siguientes características
+	- El Catalogo de marcas debe ser siempre accesible por el bot
+	- Los modelos disponibles deben provenir de una tabla en base de datos, el bot se encargara de generar los filtros y el servicio de generar un listado acorde, adicionalmente se debe informar al agente la lista retornada, numero de paginas extra y la actual
+	- La ventana de contexto debe ser limpiada una vez llegado al limite de tokens manteniendo siempre las reglas
+- Generar mecanismos de limpieza de contexto para que el usuario pueda limpiar manualmente la session
+- Establecer tiempo de vida de session (días, semanas, etc)
