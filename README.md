@@ -108,7 +108,7 @@ POST webhook/twilio/
 }
 ```
 In order to be used is needed to configure the sandbox from twilio
-![img.png](img.png)
+![img.png](templates/img.png)
 Also is important to be accessible via internet, this could be done using [ngrok](https://ngrok.com/use-cases/webhook-testing)
 
 
