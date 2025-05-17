@@ -115,7 +115,16 @@ Also is important to be accessible via internet, this could be done using [ngrok
 ## Arquitectura del Bot 
 ![img.png](src/img.png)
 
-### Roadmap
+# Backlog / Roadmap
+## Para llevar a producción (Usando AWS)
+- Generar registro en ECR para guardar la imagen docker
+- Generar Cluster ECS
+- Generar CI/CD script (Git hub actions)
+	- Build de imagen y push a ECS 
+	-  Deploy to ECS Cluster
+- Soporte de Datadog o similar para monitoreo
+
+
 - Generar pruebas unitarias de los componentes
 - Generar Logs de latencia de respuesta del agente para medir el performance general del agente
 - Añadir encuesta de NPS a la interacción del bot 
