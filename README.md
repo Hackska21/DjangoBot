@@ -126,23 +126,51 @@ Also is important to be accessible via internet, this could be done using [ngrok
 
 
 ### Roadmap
-- Generar pruebas unitarias de los componentes
-- Generar Logs de latencia de respuesta del agente para medir el performance general del agente
-- Añadir encuesta de NPS a la interacción del bot 
-- Generar Plan de regresión para testear el bot
-	- Casos de uso standard
-	- Reacción del bot a peticiones fuera de su objetivo 
-	- Validar contra historial el comportamiento del bot frente a las mismas preguntas y evaluar sus resultados basado en:
-		- Precision 
-		- Velocidad de respuesta
-		- Alineación de personalidad 
-		- Facilidad de navegación
-	
-- Modificar el proceso de ingesta de datos de autos con las siguientes características
-	- El Catalogo de marcas debe ser siempre accesible por el bot
-	- Los modelos disponibles deben provenir de una tabla en base de datos, el bot se encargara de generar los filtros y el servicio de generar un listado acorde, adicionalmente se debe informar al agente la lista retornada como parte del contexto, numero de paginas extra y la actual
-	- La ventana de contexto debe ser limpiada una vez llegado al limite de tokens manteniendo siempre las reglas y marcas
-- Generar mecanismos de limpieza de contexto para que el usuario pueda limpiar manualmente la session
-- Establecer tiempo de vida de session (días, semanas, etc)
-- Generar sistema de notificaciones para dar seguimiento manual una vez se genere el plan de financiamiento 
+1. Preparación e Infraestructura
+1.1. Configuración de Infraestructura en AWS
+- Crear y configurar repositorio en ECR para almacenar imágenes Docker.
+- Definir políticas y roles de IAM adecuados para interacción con ECR en el proceso de CI/CD.
+- Crear y configurar cluster ECS con servicios y tareas necesarias, ajustando networking (VPC, subnets, security groups).
+- Integrar herramientas de monitoreo como Datadog o CloudWatch para registro de métricas, latencia y alertas.
+
+2. Integración Continua y Despliegue (CI/CD)
+2.1. Configuración de GitHub Actions
+- Programar workflow que construya imagen Docker desde el código en Python/Django.
+- Configurar proceso de push automático de la imagen al repositorio ECR.
+- Establecer despliegue automatizado al cluster ECS tras cada actualización de código.
+- Implementar rollback automático en caso de fallos en el despliegue.
+- Integrar notificaciones en canales de comunicación (Slack, email) para alertar sobre errores críticos.
+2.2. Pipeline para Pruebas Automatizadas
+- Integrar pruebas unitarias en cada commit o pull request.
+- Desarrollar tests de integración para validar respuestas del bot en casos de uso reales.
+
+3. Evaluación de Rendimiento y Detección de Regresiones
+3.1. Monitoreo del Desempeño
+- Implementar captura de logs de latencia de respuesta del bot.
+- Configurar métricas para medir velocidad de respuesta y estabilidad bajo carga.
+- Incorporar encuestas de NPS en las interacciones para recolectar feedback de usuarios.
+- Integrar panel de métricas para análisis del rendimiento en tiempo real.
+3.2. Pruebas de Regresión
+- Definir conjunto de casos de prueba para evaluar el comportamiento del bot en diferentes escenarios.
+- Automatizar tests de regresión para evaluar precisión, velocidad de respuesta y alineación de personalidad.
+- Implementar comparación de versiones basada en historial de interacciones del bot.
+
+4. Procesos de Datos y Gestión del Contexto
+4.1. Ingesta de Datos y Catálogo de Autos
+- Asegurar acceso constante al catálogo de marcas por parte del bot.
+- Configurar extracción de modelos disponibles desde base de datos.
+- Diseñar mecanismos de filtrado dinámico para generación de listados.
+- Incorporar datos de la lista retornada como parte del contexto, junto con número de páginas y página actual.
+4.2. Gestión del Contexto en el Bot
+- Establecer limpieza automática de ventana de contexto al alcanzar límite de tokens.
+- Implementar mecanismo para permitir a usuarios limpiar manualmente la sesión.
+- Definir tiempo de vida de sesión configurable (días, semanas, etc.).
+
+5. Seguimiento y Notificaciones
+5.1. Sistema de Notificaciones
+- Establecer sistema de alertas para eventos clave, como la generación de un plan de financiamiento.
+- Integrar notificaciones en herramientas de monitoreo y comunicación interna.
+5.2. Mantenimiento y Mejora Continua
+- Revisar métricas de rendimiento periódicamente y realizar ajustes según hallazgos.
+- Planificar iteraciones en el roadmap basadas en feedback de usuario y análisis de métricas.
 
