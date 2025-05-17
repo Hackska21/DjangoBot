@@ -1,13 +1,8 @@
-from rest_framework import serializers
 from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 
 from apps.seller.services.seller_bot import SellerBotService
-
-
-class MsgSerializer(serializers.Serializer):
-    msg = serializers.CharField(max_length=255)
-    user_id = serializers.CharField(max_length=255)
+from apps.seller.serializers.msg import MsgSerializer
 
 
 class SimpleChatbotEndpoint(CreateAPIView):
