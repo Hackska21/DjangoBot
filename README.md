@@ -125,13 +125,19 @@ Also is important to be accessible via internet, this could be done using [ngrok
 - Soporte de Datadog o similar para monitoreo
 
 
+### Roadmap
 - Generar pruebas unitarias de los componentes
 - Generar Logs de latencia de respuesta del agente para medir el performance general del agente
 - Añadir encuesta de NPS a la interacción del bot 
 - Generar Plan de regresión para testear el bot
 	- Casos de uso standard
 	- Reacción del bot a peticiones fuera de su objetivo 
-	- Validar contra historial el comportamiento del bot frente a las mismas preguntas y evaluar sus resultados 
+	- Validar contra historial el comportamiento del bot frente a las mismas preguntas y evaluar sus resultados basado en:
+		- Precision 
+		- Velocidad de respuesta
+		- Alineación de personalidad 
+		- Facilidad de navegación
+	
 - Modificar el proceso de ingesta de datos de autos con las siguientes características
 	- El Catalogo de marcas debe ser siempre accesible por el bot
 	- Los modelos disponibles deben provenir de una tabla en base de datos, el bot se encargara de generar los filtros y el servicio de generar un listado acorde, adicionalmente se debe informar al agente la lista retornada como parte del contexto, numero de paginas extra y la actual
@@ -139,3 +145,4 @@ Also is important to be accessible via internet, this could be done using [ngrok
 - Generar mecanismos de limpieza de contexto para que el usuario pueda limpiar manualmente la session
 - Establecer tiempo de vida de session (días, semanas, etc)
 - Generar sistema de notificaciones para dar seguimiento manual una vez se genere el plan de financiamiento 
+
